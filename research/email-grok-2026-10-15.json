@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "accessedAt": "2026-10-15",
+  "baseline": {
+    "emailDoctors": 640,
+    "uniqueEmails": 640,
+    "missingDoctors": 331,
+    "sources": 1555,
+    "directorySha256": "ce979765dfb5280a91e8d01c7fe544e566b5a2b399c83807027fa1366338f4cf"
+  },
+  "result": {
+    "addedEmailDoctors": 8,
+    "addedUniqueEmails": 8,
+    "addedSources": 8,
+    "emailDoctors": 648,
+    "uniqueEmails": 648,
+    "remainingMissing": 323,
+    "sources": 1563
+  },
+  "method": "Did not repeat the ten finished paper rounds. Three new public routes were exhausted, then Europe PMC open full texts were paired to the named author node or to a unique initial on that author's own affiliation line. Department had to match the directory. Office, student-number, other-hospital and other-department addresses were rejected.",
+  "zeroYieldRoutes": [
+    {
+      "route": "ClinicalTrials.gov hospital contact download",
+      "checked": "2069 Peking University Third Hospital records and 3107 Peking Union records",
+      "outcome": "Name matches were other-hospital homonyms, homophone traps, or office mailboxes. xufeibysy@163.com was not assigned to 续飞; bysygcpoffice@163.com was not assigned to 徐艳."
+    },
+    {
+      "route": "ORCID public email",
+      "checked": "331 missing doctors",
+      "outcome": "Some records exist; zero public emails."
+    },
+    {
+      "route": "Peking University Health Science Center faculty pages",
+      "checked": "About 157 profile emails, then titles re-extracted",
+      "outcome": "Intersection with missing doctors whose page states Third Hospital was zero. pkuiacm@bjmu.edu.cn and bysy@bjmu.edu.cn are institutional addresses."
+    },
+    {
+      "route": "Europe PMC full-text retry of 36 HTTP 500 articles",
+      "checked": "Three attempts each",
+      "outcome": "The failed full texts stayed unavailable. No additional address came from the retry."
+    }
+  ],
+  "entries": [
+    {
+      "doctorId": "puh3-ek-1091",
+      "name": "朴梅花",
+      "department": "儿科",
+      "email": "pmh1990@sina.com",
+      "year": 2025,
+      "pmcid": "PMC11941668",
+      "sourceUrl": "https://europepmc.org/articles/PMC11941668",
+      "ownership": "Affiliation line marks (M.P.); Meihua Piao is the only pediatrics author with those initials."
+    },
+    {
+      "doctorId": "puh3-xynk-1441",
+      "name": "田磊",
+      "department": "血液内科",
+      "email": "tianlei@bjmu.edu.cn",
+      "year": 2024,
+      "pmcid": "PMC11258385",
+      "sourceUrl": "https://europepmc.org/articles/PMC11258385",
+      "ownership": "Email is inside Lei Tian's own author node, hematology."
+    },
+    {
+      "doctorId": "puh3-xhk-1261",
+      "name": "陆京京",
+      "department": "消化科",
+      "email": "lujingjing@bjmu.edu.cn",
+      "year": 2019,
+      "pmcid": "PMC7003148",
+      "sourceUrl": "https://europepmc.org/articles/PMC7003148",
+      "ownership": "Email is inside Jingjing Lu's own node. The same node lists Third Hospital gastroenterology and a Mayo Clinic unit."
+    },
+    {
+      "doctorId": "puh3-xhk-1211",
+      "name": "索宝军",
+      "department": "消化科",
+      "email": "suobaojun2013@126.com",
+      "year": 2026,
+      "pmcid": "PMC13137788",
+      "sourceUrl": "https://europepmc.org/articles/PMC13137788",
+      "ownership": "Corresponding-author node; affiliation 13 is Third Hospital gastroenterology."
+    },
+    {
+      "doctorId": "puh3-jzk-2321",
+      "name": "王军红",
+      "department": "急诊科",
+      "email": "wangjh111@126.com",
+      "year": 2025,
+      "pmcid": "PMC12214122",
+      "sourceUrl": "https://europepmc.org/articles/PMC12214122",
+      "ownership": "Email is inside Junhong Wang's own emergency-department node."
+    },
+    {
+      "doctorId": "puh3-gk-5743",
+      "name": "冯辉",
+      "department": "骨科",
+      "email": "fenghuibjmu@bjmu.edu.cn",
+      "year": 2026,
+      "pmcid": "PMC13118223",
+      "sourceUrl": "https://europepmc.org/articles/PMC13118223",
+      "ownership": "(H.F.) is unique among orthopedics authors and matches Hui Feng."
+    },
+    {
+      "doctorId": "puh3-gk-6953",
+      "name": "赵然",
+      "department": "骨科",
+      "email": "zhaoran09@126.com",
+      "year": 2023,
+      "pmcid": "PMC9990337",
+      "sourceUrl": "https://europepmc.org/articles/PMC9990337",
+      "ownership": "Email is inside Ran Zhao's own orthopedics node."
+    },
+    {
+      "doctorId": "puh3-fck-3001",
+      "name": "刘忠宇",
+      "department": "妇产科",
+      "email": "liuzhongyudayu@163.com",
+      "year": 2025,
+      "pmcid": "PMC12292186",
+      "sourceUrl": "https://europepmc.org/articles/PMC12292186",
+      "ownership": "(Z.L.) is unique and matches Zhongyu Liu in obstetrics and gynecology."
+    }
+  ],
+  "rejected": [
+    {"doctorId": "puh3-zeng-yan", "name": "曾妍", "email": "puth_zy73@163.com", "reason": "Paper department is orthopedics; directory doctor is rehabilitation, and the profile notes another same-name doctor at the northern campus."},
+    {"doctorId": "puh3-yang-wenzhi", "name": "杨文质", "email": "2111110464@bjmu.edu.cn", "reason": "(W.Y.) is a neurology author, not urology, and the address looks like a student number."},
+    {"doctorId": "puh3-xxgnk-3151", "name": "曾辉", "email": "zenghui_36@163.com", "reason": "Corresponding author is at Peking University Shenzhen Hospital, not Third Hospital cardiology. zenghui@ccmu.edu.cn is a Capital Medical University namesake."},
+    {"doctorId": "puh3-sjnk-16652", "name": "张晖", "email": "huizhang@bjmu.edu.cn", "reason": "(H.Z.) is pediatrics; directory 张晖 is neurology."},
+    {"doctorId": "puh3-ptwk-1611", "name": "白洋", "email": "yangbxx2019@163.com", "reason": "Cancer center / basic research, not the directory thyroid general surgeon."},
+    {"doctorId": "puh3-ptwk-4981", "name": "王佳", "email": "wang_jia@fudan.edu.cn", "reason": "Fudan oncology school, not Third Hospital general surgery."},
+    {"doctorId": "puh3-blk-1951", "name": "杨菁", "email": "wingman_yj@163.com", "reason": "Author node is obstetrics and gynecology. The address is already owned by directory 杨静 (puh3-fck-3111), the homophone of 杨菁; it is not copied to pathology."}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "docsglobe",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Source-backed doctor directory, starting with Beijing tertiary hospitals.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "test": "node --test",
+    "check": "node scripts/validate.mjs"
+  },
+  "license": "MIT"
+}

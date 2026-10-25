@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="北京三甲医院医生信息导航。按姓名、医院、科室和专业方向查找，回到官方来源核对与联系。首批收录，非全量。">
+    <meta name="referrer" content="no-referrer">
+    <title>DocsGlobe · 北京医生导航</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.mjs"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#directory">跳至医生目录</a>
+    <header class="site-header wrap">
+      <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">DG</span> DocsGlobe</a>
+      <nav aria-label="主导航">
+        <a href="#directory">查找医生</a>
+        <a href="#work-plan">计划与进度</a>
+        <a href="#coverage-progress">覆盖进度</a>
+        <a href="#principles">收录原则</a>
+      </nav>
+      <span class="edition">北京 · 首版</span>
+    </header>
+    <main class="wrap">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">北京三甲医院 · 官方资料导航</p>
+          <h1 id="hero-title">找到相关医生，<br>从可信的信息开始。</h1>
+          <p class="hero-copy">看专业方向，查公开经历与学术邮箱，回到医院官网核对就医渠道。<br>不做“名医”排名，不用评分代替医疗判断。</p>
+          <a class="primary-link" href="#directory">浏览医生目录 <span aria-hidden="true">↘</span></a>
+        </div>
+        <aside class="coverage" aria-label="收录范围">
+          <span class="pill">持续建设中 · 非全量</span>
+          <h2>从北京开始</h2>
+          <div class="stats">
+            <div><strong id="hospital-count">—</strong><span>家已收录医院</span></div>
+            <div><strong id="doctor-count">—</strong><span>位已收录医生</span></div>
+          </div>
+          <p>范围：北京市三级甲等医院。<br>收录先后与医生水平无关，不代表推荐。</p>
+        </aside>
+      </section>
+
+      <section id="work-plan" class="work-plan" aria-labelledby="plan-title">
+        <p class="eyebrow">明确阶段目标，不虚报全市完成率</p>
+        <h2 id="plan-title">计划与进度</h2>
+        <p id="plan-status" role="status" aria-live="polite">正在读取计划进度…</p>
+        <div id="plan-content" hidden></div>
+        <noscript><p class="notice">请启用 JavaScript 查看根据目录计算的进度，或查看<a href="./data/coverage.json">盘点与工作记录</a>。</p></noscript>
+      </section>
+
+      <section id="directory" class="directory" aria-labelledby="directory-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">DOCTOR DIRECTORY</p><h2 id="directory-title">医生目录</h2></div>
+          <p>每项关键信息都有来源可查</p>
+        </div>
+        <form id="filters" role="search" aria-label="筛选医生">
+          <fieldset id="filter-fields" disabled>
+            <div class="search-field">
+              <label for="query">搜索姓名、医院或专业方向</label>
+              <input id="query" type="search" placeholder="例如：北医三院、多囊卵巢、胰腺" autocomplete="off" maxlength="200">
+            </div>
+            <div>
+              <label for="hospital">医院</label>
+              <select id="hospital"><option value="">全部已收录医院</option></select>
+            </div>
+            <div>
+              <label for="department">科室</label>
+              <select id="department"><option value="">全部已收录科室</option></select>
+            </div>
+            <button id="clear" type="reset">重置筛选</button>
+          </fieldset>
+        </form>
+        <div class="results-heading">
+          <p id="result-count" role="status" aria-live="polite">正在加载医生资料…</p>
+          <span>按姓名排序 · 非能力排名</span>
+        </div>
+        <div id="load-error" class="notice error" role="alert" hidden></div>
+        <div id="empty" class="empty" hidden>
+          <h3>当前收录中没有匹配的医生</h3>
+          <p>可减少关键词或重置筛选。这不代表北京没有相关医生。</p>
+        </div>
+        <p id="table-help" class="table-help">每位医生一行，专业方向、完整介绍及来源链接直接展示；未收录或未核实的信息以文字标注，不表示不存在。专业方向与介绍不构成治疗建议。表格随页面展开，不设内部滚动区域。</p>
+        <div id="doctor-table-container" class="doctor-table-container" hidden>
+          <table class="doctor-table" aria-describedby="table-help">
+            <caption class="visually-hidden">已收录医生信息对照表，按姓名排序，非能力排名</caption>
+            <colgroup>
+              <col class="col-name"><col class="col-hospital"><col class="col-department"><col class="col-title"><col class="col-bio">
+              <col class="col-email"><col class="col-reviews"><col class="col-source">
+            </colgroup>
+            <thead><tr>
+              <th scope="col">姓名</th><th scope="col">医院</th><th scope="col">科室</th><th scope="col">职称</th><th scope="col">专业方向与医生介绍</th>
+              <th scope="col">公开学术邮箱</th><th scope="col">患者评价</th><th scope="col">来源 / 核对日期</th>
+            </tr></thead>
+            <tbody id="doctor-rows"></tbody>
+          </table>
+        </div>
+        <noscript><p class="notice">请启用 JavaScript 使用筛选。也可查看<a href="./data/beijing.json">原始目录数据</a>，其中附有官方来源链接。</p></noscript>
+      </section>
+
+      <section id="coverage-progress" class="coverage-progress" aria-labelledby="coverage-title">
+        <p class="eyebrow">从候选清单，到可核对的完整名录</p>
+        <h2 id="coverage-title">覆盖进度</h2>
+        <p id="coverage-status" role="status" aria-live="polite">正在读取覆盖进度…</p>
+        <div id="coverage-error" class="notice error" role="alert" hidden></div>
+        <div id="coverage-content" hidden></div>
+        <p class="contact-note">医院候选、科室入口和待核对列名与已完成的医生档案分开统计。<a href="./data/coverage.json">查看结构化盘点数据</a>。</p>
+        <noscript><p class="notice">请查看上方结构化数据链接；覆盖情况为部分清单，不是全市统计。</p></noscript>
+      </section>
+
+      <section id="principles" class="principles" aria-labelledby="principles-title">
+        <p class="eyebrow">透明，而不是替你下结论</p>
+        <h2 id="principles-title">使用前，请了解这些边界</h2>
+        <div class="principle-grid">
+          <article><span>01 / 来源</span><h3>核对页面，不等于核验执业</h3><p>医生介绍根据医院、高校及研究机构的公开资料整理，原始出处可展开查看；邮箱另附直接来源。核对日期不代表原站刚更新，也不证明当前执业、出诊或邮箱有效。</p></article>
+          <article><span>02 / 评价</span><h3>暂不收录患者评价</h3><p>首版不抓取社交帖子、不生成评分、不收集患者病历。“未收录”不是“没有评价”，也不是零分。</p></article>
+          <article><span>03 / 联系</span><h3>学术邮箱不等于挂号渠道</h3><p>展示已公开的学术邮箱及原始出处，未测试收信或回复，不保证接受患者咨询。不要直接发送病历或身份证信息；预约、出诊及急诊请走正规就医渠道，不收录私人手机或微信。</p></article>
+        </div>
+        <p class="notice">本项目仅作信息导航，不提供诊断或医疗建议。专业方向匹配不是治疗建议；是否适合就诊需由医疗专业人员评估。急症请及时就医或拨打 120。</p>
+        <details class="corrections">
+          <summary>资料过期、错误或需要移除时怎么办？</summary>
+          <p>本地使用者请联系项目维护者；发布到 GitHub 后，可在该仓库提交 Issue，注明医生记录 ID、待更正字段与官方证据链接。请勿上传病历或患者身份信息。当前原型尚未提供公开在线提交服务。</p>
+          <p>代码与来源内容的授权分开处理；请查看仓库说明后再使用或再分发数据。</p>
+        </details>
+      </section>
+    </main>
+    <footer class="wrap"><span>DocsGlobe / 北京医生导航</span><span>首批资料 · 开源代码 · 来源可追溯</span></footer>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-15",
+  "method": "pubmed-affiliation-inversion",
+  "added": 0,
+  "baseline": {
+    "withEmail": 648,
+    "missing": 323,
+    "sources": 1563,
+    "sha256": "ce979765dfb5280a91e8d01c7fe544e566b5a2b399c83807027fa1366338f4cf"
+  },
+  "whatWasTried": [
+    "Collected 5235 unique PMIDs whose affiliation field already contains Peking University Third Hospital plus a mailbox domain (bjmu.edu.cn, 163.com, 126.com, sina.com, qq.com, yeah.net, vip.163.com, foxmail.com, hotmail.com, 139.com, aliyun.com).",
+    "First pass assigned an address when it sat anywhere in one author's affiliation. That falsely paired 伍蕊 (呼吸与危重症医学科) with pathology author Rui Wu's raynwu98@163.com (PMID 30173944). The matcher was stopped and tightened to require a positive department keyword.",
+    "Strict department matching still returned six hits. Every address belonged to the corresponding author and had been pasted onto another author node. None were published.",
+    "Explicit 'Corresponding author: Name, Email' extraction found 34 phrases and zero missing directory doctors.",
+    "Full-pinyin coauthor matching found one candidate, 孟灵梅 menglingmei1977@163.com (PMID 26710953). The address is on 周丽雅's affiliation line, not 孟灵梅's node. Rejected.",
+    "LetPub and the NSFC portal returned JavaScript shells. CQVIP returned HTTP 412. WJG returned HTTP 403. Those walls were not bypassed.",
+    "《中国微创外科杂志》 prints *通讯作者，E-mail in article HTML. Its unit search for 北京大学第三医院 returned two articles. 15910776454@163.com on 201903004 belongs to 姜玲 (老年内科, already owned), not 张福春 (心血管内科, still missing). Issue-index URLs do not paginate."
+  ],
+  "rejected": [
+    {"doctor": "伍蕊", "department": "呼吸与危重症医学科", "email": "raynwu98@163.com", "reason": "PMID 30173944 is pathology author Rui Wu, not this doctor"},
+    {"doctor": "王亮", "department": "普通外科", "email": "xiudianrong@163.com", "reason": "PMID 33415958 address belongs to 修典荣 and is already owned"},
+    {"doctor": "王奔", "department": "普通外科", "email": "qingganggelin@126.com", "reason": "PMID 33415958 address belongs to 葛庆刚, who is not this directory doctor"},
+    {"doctor": "刘慧强", "department": "儿科", "email": "tongxm2007@126.com", "reason": "PMID 31567893 address belongs to 童笑梅 and is already owned"},
+    {"doctor": "崔蕴璞", "department": "儿科", "email": "obesity530@126.com", "reason": "PMID 31567893 pasted the correspondent address onto the first author"},
+    {"doctor": "郭治国", "department": "急诊科", "email": "maqingbian@medmail.com.cn", "reason": "PMID 30704229 explicitly names 马庆卞"},
+    {"doctor": "孟灵梅", "department": "消化科", "email": "menglingmei1977@163.com", "reason": "PMID 26710953 address is inside 周丽雅's author node"},
+    {"doctor": "张福春", "department": "心血管内科", "email": "15910776454@163.com", "reason": "中国微创外科杂志 201903004 address belongs to 姜玲 and is already owned"}
+  ],
+  "rule": "An address is accepted only when it is inside the target doctor's own author node, or an explicit corresponding-author line names that doctor, and the hospital plus department match the directory. Username similarity and same-hospital coauthorship are not enough. PubMed Chinese-journal records routinely paste the correspondent's mailbox onto the first author or a senior coauthor."
+}

@@ -1,0 +1,516 @@
+{
+  "schemaVersion": 1,
+  "accessedAt": "2026-10-15",
+  "baseline": {
+    "emailDoctors": 631,
+    "uniqueEmails": 631,
+    "missingDoctors": 340,
+    "sources": 1546,
+    "directorySha256": "73d10a7774ff8b4c4fc0c220dc3973636c15a30773066910c22418d439640bb3"
+  },
+  "roles": [
+    "独立线索开拓者",
+    "核验与入库者（主代理）"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "hypothesis": "以中文官网代表作锁定国内期刊，可以避开英文同名和通讯作者索引缺失。",
+      "actions": [
+        "新读张福春、王琛、周劲松、徐敏丽、李春婷、关欣、路雪艳、陈晓红、薛梅、李峥共10份官网档案。",
+        "在北大期刊平台找到张福春2019年代表作及三院单位；未见邮箱。",
+        "搜索路雪艳产生ChiCTR2600132760登记线索，但实际原页405；关欣中华皮肤科原页401验证码，均停止，不绕过验证。"
+      ],
+      "checks": [
+        {
+          "url": "https://ccj.pku.edu.cn/article/info?aid=233774691",
+          "outcome": "read-no-email"
+        },
+        {
+          "url": "https://www.chictr.org.cn/hvshowproject.html?id=310952",
+          "outcome": "blocked",
+          "httpStatus": 405
+        },
+        {
+          "url": "https://rs.yiigle.com/CN321138201408/181571.htm",
+          "outcome": "verification-required",
+          "httpStatus": 401
+        }
+      ],
+      "acceptedDoctorIds": [],
+      "reflection": "网页访问失败不是没有地址，但搜索生成的摘要也不能代替原文。与开拓者交叉讨论后，决定使用出版社公开作者页、真实历史单位和独立旧站，而非重复请求被阻断的入口。"
+    },
+    {
+      "round": 2,
+      "hypothesis": "学术联系不只出现在论文正文；旧期刊的学会征文通知可能直接具名列出医生邮箱。",
+      "actions": [
+        "从登记线索反查独立的学会征文通知，读到《国际皮肤性病学杂志》旧站的路雪艳具名邮箱。",
+        "确认旧站编辑部名称、地址、联系方式及迁移通知，官网确认同学组委员兼秘书身份。",
+        "中国微创外科杂志使用其实际HTTP入口可读；站内检索命中2019年代表作，但星号与邮箱归属有交叉疑点，未增加张福春邮箱。"
+      ],
+      "checks": [
+        {
+          "url": "http://221.226.128.173:8080/CN/column/item208.shtml",
+          "outcome": "read-named-academic-contact"
+        },
+        {
+          "url": "http://zgwcwk.paperopen.com/oa/DArticle.aspx?type=view&id=201903004",
+          "outcome": "read-attribution-conflict",
+          "emailNotTransferred": "15910776454@163.com"
+        }
+      ],
+      "acceptedDoctorIds": [
+        "puh3-pfk-3402"
+      ],
+      "reflection": "开拓者从历史单位找到朱德海和付帅；核验者从具名学会通知找到路雪艳。下一轮分别检验原始PubMed逐人作者字段、旧刊相邻培训/基金通知；不假设方法一旦有效就可批量赋址。"
+    },
+    {
+      "round": 3,
+      "hypothesis": "沿已验证旧刊通知的相邻培训、基金及会议链接横向展开，测试能否复制具名联系人发现。",
+      "actions": [
+        "读取迁移说明、会议栏目及2014年皮肤外科学习班通知；征文栏目返回404。",
+        "另读5份链接可达的培训或基金通知，与全部340个缺失姓名匹配，没有新的目标具名邮箱。",
+        "发现目录原本只接受HTTPS和四类来源，会阻止已核验的HTTP学会通知入库；新增逐条显式例外与未加密提示，医院官网仍默认HTTPS，不伪造HTTPS来源。"
+      ],
+      "checks": [
+        {
+          "url": "http://221.226.128.173:8080/CN/column/item166.shtml",
+          "outcome": "read-migration-notice"
+        },
+        {
+          "url": "http://221.226.128.173:8080/CN/column/column36.shtml",
+          "outcome": "read-index"
+        },
+        {
+          "url": "http://221.226.128.173:8080/CN/column/column42.shtml",
+          "outcome": "not-found",
+          "httpStatus": 404
+        },
+        {
+          "url": "http://221.226.128.173:8080/CN/column/item216.shtml",
+          "outcome": "read-other-named-contacts"
+        }
+      ],
+      "acceptedDoctorIds": [],
+      "reflection": "横向复制本轮没有新增，不能把网站页脚、报名处或别人的联系方式当成目标医生邮箱。保留这条阴性结果，将后续预算优先给有明确作者/训练单位锚点的候选。"
+    }
+  ],
+  "entries": [
+    {
+      "doctorId": "puh3-yk-1583",
+      "name": "张惠蓉",
+      "email": "eagleye909@163.com",
+      "sourceUrl": "https://link.springer.com/article/10.1007/s12177-012-9097-7",
+      "title": "Panuveitis complicated by an inflammatory retinal mass",
+      "publisher": "Journal of Ocular Biology, Diseases, and Informatics（Springer）",
+      "publishedYear": 2013,
+      "publicationDateNote": "出版社标注在线发表2013-01-10；卷期为2012年，第5卷36-39页。publishedYear按在线发表年2013记录，不将卷期年与在线日期混同。",
+      "identityNote": "出版社公开作者信息中，Huirong Zhang具名mailto直接链接eagleye909@163.com，并归属北京大学第三医院眼科；官网张惠蓉为眼科教授，眼底病及葡萄膜炎临床方向相符。官网明确注明长期停诊，须保留此提示。仅取到公开作者/单位/通讯信息，未访问订阅正文；历史学术邮箱，未测试收信。",
+      "sourceKind": "journal-article",
+      "evidencePath": "pathfinder\\PMC3572242-publisher.html",
+      "evidenceSha256": "c67746dc26ec3d56eae20fbe95893a1992eb4890b2585836438923bdfd0ea935",
+      "profileUrl": "https://www.puh3.net.cn/yk/info/1461/1583.htm",
+      "round": 1,
+      "profileEvidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\pathfinder\\zhang-huirong-profile-official.html",
+      "profileEvidenceSha256": "aaacf74cf9c32e4ec4c2b527ec4673ee71435cacef3646092aab398b1f1022f9",
+      "pairingExcerpt": "<a aria-label=\"email Huirong Zhang\" href=\"mailto:eagleye909@163.com\" id=\"corresp-c1\">Huirong Zhang</a>",
+      "sourceId": "email-reflect-puh3-yk-1583",
+      "state": "accepted",
+      "department": "眼科"
+    },
+    {
+      "doctorId": "puh3-yk-7382",
+      "name": "朱德海",
+      "email": "zhudehai2336@163.com",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12350249/fullTextXML",
+      "title": "Biometric parameters and choroidal microstructure in Chinese children with unilateral anisometropia.",
+      "publisher": "Frontiers in Medicine（Frontiers）",
+      "publishedYear": 2025,
+      "publicationDateNote": "原文电子发表日期2025-07-31。仅整合2025地址；2022年的另一邮箱保留在第二轮线索，不重复增加医生或地址。",
+      "identityNote": "原文通讯段明确配对Dehai Zhu及zhudehai2336@163.com，作者单位为北京大学第一医院小儿眼科。三院官网明确记载其2001年起在北大医院小儿眼科任职，2019-2025年任科主任，2025年12月调入三院；因此历史单位差异已解释。2023年原文另有本人作者节点同址支持。未测试收信。",
+      "sourceKind": "journal-article",
+      "evidencePath": "pathfinder\\round2\\PMC12350249.xml",
+      "evidenceSha256": "b06ed2cd7f4285810b6647489abe24465051a62473b950499ccedfde0c4a221d",
+      "profileUrl": "https://www.puh3.net.cn/yk/info/1461/7382.htm",
+      "round": 2,
+      "profileEvidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\pathfinder\\round2\\puh3-yk-7382-profile.html",
+      "profileEvidenceSha256": "200665a20df508c6351fc3389e7bb77239e72c8ce0ed1e83487fd76a01e9c685",
+      "pairingExcerpt": "*Correspondence: Dehai Zhu, zhudehai2336@163.com",
+      "sourceId": "email-reflect-puh3-yk-7382",
+      "state": "accepted",
+      "department": "眼科"
+    },
+    {
+      "doctorId": "puh3-csyxk-2401",
+      "name": "付帅",
+      "email": "ouhe1919@sina.com",
+      "sourceUrl": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=24746446&retmode=xml",
+      "title": "Thyroid nodules with suspicious ultrasound findings: the role of ultrasound-guided core needle biopsy.",
+      "publisher": "Clinical Imaging（Elsevier）",
+      "publishedYear": 2014,
+      "publicationDateNote": "电子发表2014-03-27，卷期2014年7-8月。证据为NCBI PubMed期刊文章原始作者元数据，非论文全文；出版社正文未取得。",
+      "identityNote": "PubMed原始XML中LastName=Fu、ForeName=Shuai的Author/AffiliationInfo单独标注ouhe1919@sina.com及解放军总医院超声科；该文五名作者各有不同邮箱，并非共用单位邮箱批量分配。三院官网载其2011-2014年在解放军医学院攻读影像医学与核医学博士、2014年8月进入三院超声科，官网2020年英文代表作亦确认完整署名Shuai Fu。第三轮取得研招网正式说明：军医进修学院与总医院同一机构，且2012年更名为解放军医学院，补齐训练单位关联。此为历史学术邮箱，未测试收信。",
+      "sourceKind": "journal-article",
+      "evidencePath": "pathfinder\\round2\\fu-pubmed-24746446.xml",
+      "evidenceSha256": "5597828a3f7499b3a62c08ffc47988ac7b175d99ba2c03917ac442b78855377e",
+      "profileUrl": "https://www.puh3.net.cn/csyxk/info/1461/2401.htm",
+      "round": 2,
+      "profileEvidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\pathfinder\\round2\\puh3-csyxk-2401-profile.html",
+      "profileEvidenceSha256": "7bd51f928bd64e5c625be6d72b22645b224acec7eec16e7c95939536c3174e85",
+      "pairingExcerpt": "<Author ValidYN=\"Y\"><LastName>Fu</LastName><ForeName>Shuai</ForeName><Initials>S</Initials><AffiliationInfo><Affiliation>Department of Ultrasound, General Hospital of Chinese PLA, No.28, Fuxing Road, Haidian District, Beijing, China, (100853). Electronic address: ouhe1919@sina.com.</Affiliation></AffiliationInfo></Author>",
+      "supportingEvidence": [
+        {
+          "sourceUrl": "https://yz.chsi.com.cn/sch/viewZszc--infoId-81450103,categoryId-10462685,schId-367823,mindex-12.dhtml",
+          "title": "解放军医学院_院校信息_中国研究生招生信息网",
+          "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\pathfinder\\round3\\chsi-institution-qa-official.html",
+          "evidenceSha256": "be88334bc60e9c86a1da545936285794443a12aecc3c0c136708c0279bbc4910",
+          "excerpt": "军医进修学院与解放军总医院为同一机构，两个名称，是目前全军唯一一所医院办学单位。"
+        },
+        {
+          "sourceUrl": "https://yz.chsi.com.cn/sch/schoolInfo--schId-367823,categoryId-471667.dhtml",
+          "title": "解放军医学院_院校信息_中国研究生招生信息网",
+          "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\pathfinder\\round3\\chsi-institution-introduction-official.html",
+          "evidenceSha256": "d811982785995d1e3ab21d0e8adfcc8a8b5fbd5fcab291d80e1843cc46e8578a",
+          "excerpt": "1958年11月4日，成立军医进修学院（2012年4月更名为解放军医学院），开启医院办学先河。"
+        }
+      ],
+      "supplementedInRound": 3,
+      "sourceId": "email-reflect-puh3-csyxk-2401",
+      "state": "accepted",
+      "department": "超声医学科"
+    },
+    {
+      "doctorId": "puh3-pfk-3402",
+      "name": "路雪艳",
+      "email": "lusialu@sina.com",
+      "sourceUrl": "http://221.226.128.173:8080/CN/column/item208.shtml",
+      "title": "奇正青鹏软膏有奖征文通知",
+      "publisher": "中国中西医结合学会皮肤性病专业委员会 / 国际皮肤性病学杂志编辑部",
+      "publishedYear": 2013,
+      "publicationDateNote": "通知为2013年度征文，截止2013-12-30，并说明在2014年学会年会评比；网页具体发布日期未标注。",
+      "identityNote": "《国际皮肤性病学杂志》旧站所载2013年度学会征文通知明确写“或路雪艳，邮箱 lusialu@sina.com”，与王伟的另一联系地址分别具名列出。三院官网记载路雪艳在该时期任皮肤科医师，并任同一环境与职业性皮肤病学组委员兼秘书，与通知专业及组织吻合。此为当时学术征文联系渠道，可能用于活动或团队联系，不声称本人专用或活动仍开放。原站仅HTTP可访问，保留真实地址并显示未加密提示；ChiCTR线索因访问阻断未作已验证依据。未测试收信，不保证当前有效、本人阅读或接受患者咨询。",
+      "sourceKind": "society-notice",
+      "allowInsecureHttp": true,
+      "evidencePath": "lu-xueyan-society-notice.html",
+      "profileUrl": "https://www.puh3.net.cn/pfk/info/1461/3402.htm",
+      "round": 2,
+      "sourceId": "email-reflect-puh3-pfk-3402",
+      "state": "accepted",
+      "department": "皮肤科",
+      "evidenceSha256": "fd4dfd4374d46dd3c8f4d5cb8b55616b1f84749e7731da7f700f84f40dbf82a4"
+    }
+  ],
+  "roundYields": {
+    "1": 1,
+    "2": 3,
+    "3": 0
+  },
+  "parentNoticeFollowups": [
+    {
+      "url": "http://221.226.128.173:8080/CN/column/item243.shtml",
+      "title": "中华医学会皮肤性病学分会-理肤泉中青年皮肤科医师海外培训项目申请报名通知",
+      "httpStatus": 200,
+      "outcome": "read",
+      "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\notice-5decdf7c9b1d40d3.html",
+      "sha256": "8e9292d5723b5ed9dbfdc71d830e5523349ff226c2f7b3b5ac33831de86fe126",
+      "emails": [
+        "gjpf144@aliyun.com",
+        "yyyluofan@163.com"
+      ],
+      "matches": []
+    },
+    {
+      "url": "http://221.226.128.173:8080/CN/column/item217.shtml",
+      "title": "中华医学会皮肤性病学分会－澳美制药银屑病研究基金获得资助名单",
+      "httpStatus": 200,
+      "outcome": "read",
+      "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\notice-47152d7cdf6094cb.html",
+      "sha256": "aa9f0a68a7d446d37f94d0006d1aa2fbfc4d525eb60b7036baae361dda098329",
+      "emails": [
+        "gjpf144@aliyun.com"
+      ],
+      "matches": []
+    },
+    {
+      "url": "http://221.226.128.173:8080/CN/column/item215.shtml",
+      "title": "中华医学会皮肤性病学分会--万马药业皮肤病学研究基金（第二期）评审结果揭晓",
+      "httpStatus": 200,
+      "outcome": "read",
+      "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\notice-df654361b1d542f0.html",
+      "sha256": "bab330fc51c63124c70f19defb86e3d56b1f9c7afe54495cbb50756ee2a25589",
+      "emails": [
+        "gjpf144@aliyun.com"
+      ],
+      "matches": []
+    },
+    {
+      "url": "http://221.226.128.173:8080/CN/column/item211.shtml",
+      "title": "中华医学会皮肤性病学分会-卫材美能中青年皮肤科医师海外培训项目申请报名通知",
+      "httpStatus": 200,
+      "outcome": "read",
+      "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\notice-998c7f5d3ca83c24.html",
+      "sha256": "3769dcb21ce24a754db9749de1c5b8a9d460a128b35722078c1d726918db74bb",
+      "emails": [
+        "gjpf144@aliyun.com",
+        "yyyluofan@hotmail.com"
+      ],
+      "matches": []
+    },
+    {
+      "url": "http://221.226.128.173:8080/CN/column/item214.shtml",
+      "title": "中华医学会皮肤性病学分会--万马药业皮肤病学研究基金（第二期）评审结果揭晓",
+      "httpStatus": 200,
+      "outcome": "read",
+      "evidencePath": "C:\\Users\\yinyuan\\.copilot\\session-state\\4dd029e1-461a-4eb5-ad30-cf33c75dd383\\files\\email-reflect\\notice-a06b589435d14912.html",
+      "sha256": "218f77689ce737f02ce1702f3683ae872a074e6d1b7845233906be4178cbf73a",
+      "emails": [
+        "gjpf144@aliyun.com"
+      ],
+      "matches": []
+    }
+  ],
+  "scopeNote": "三轮是实际采集后交换结果、改变假设再采集，不是三个并行分组。所有轮次均有界，不声称340位都完成新检索或已穷尽资料。",
+  "safetyNote": "未绕过验证码、登录、付费或访问控制；HTTP旧站逐条明示例外并提示未加密。不发信、不保证当前有效、不将同名作者或他人地址转给目标。",
+  "result": {
+    "addedEmailDoctors": 4,
+    "addedUniqueEmails": 4,
+    "addedSources": 4,
+    "emailDoctors": 635,
+    "uniqueEmails": 635,
+    "remainingMissing": 336,
+    "sources": 1550
+  },
+  "pathfinderRounds": [
+    {
+      "round": 1,
+      "stats": {
+        "previousQueueDeferredRecordsAudited": 127,
+        "previousQueueFailedRecordsAudited": 14,
+        "selectedDoctors": 12,
+        "selectedDeferredAuthorPaperRecords": 15,
+        "selectedPreviouslyFailedAuthorPaperRecords": 12,
+        "uniqueOriginalPapersAttempted": 26,
+        "uniqueOriginalPapersWithSubstantiveContentRead": 19,
+        "fullXmlRetrieved": 14,
+        "publisherFullHtmlRead": 2,
+        "publisherPublicAuthorOrAbstractPagesRead": 3,
+        "uniqueOriginalPapersStillWithoutSubstantiveContent": 7,
+        "originalRelatedEndpointRequests": 45,
+        "officialProfileRequests": 1,
+        "totalEndpointRequests": 46,
+        "requestOutcomes": {
+          "http-failed": 15,
+          "retrieved": 27,
+          "access-failed": 4
+        },
+        "httpFailureStatuses": {
+          "500": 12,
+          "403": 1,
+          "550": 2
+        },
+        "doiResolutionPagesNotCountedAsOriginals": 6,
+        "captchaPagesNotCountedAsOriginals": 1,
+        "newCandidateDoctors": 1,
+        "notes": "Original budget is unique papers actually read, not HTTP request count. No new author queries; no correspondence sent. Automatic HTTP redirects are not separately counted."
+      },
+      "targetOutcomes": [
+        {
+          "doctorId": "puh3-yk-1583",
+          "name": "张惠蓉",
+          "status": "candidate",
+          "note": "See candidate."
+        },
+        {
+          "doctorId": "puh3-ebhk-1262",
+          "name": "辛颖",
+          "status": "no-new-candidate",
+          "note": "XML 500; DOI resolver is not the original; actual journal URL HTTP 550. Remains unread."
+        },
+        {
+          "doctorId": "puh3-ebhk-1267",
+          "name": "徐驰宇",
+          "status": "no-new-candidate",
+          "note": "Shared PMC10570111 with Hu Weini; XML 500; original journal HTTP 550. Count paper once."
+        },
+        {
+          "doctorId": "puh3-ebhk-5961",
+          "name": "胡伟倪",
+          "status": "no-new-candidate",
+          "note": "Shared PMC10570111 with Xu Chiyu; XML 500; original journal HTTP 550. Remains unread."
+        },
+        {
+          "doctorId": "puh3-csyxk-3811",
+          "name": "李志宏",
+          "status": "no-new-candidate",
+          "note": "Publisher explicitly affiliates Zhihong Li with Peking University Institute of Microelectronics, not the ultrasound doctor. No identity bridge; do not attribute electronic addresses."
+        },
+        {
+          "doctorId": "puh3-blk-2131",
+          "name": "刘海静",
+          "status": "no-new-candidate",
+          "note": "XML 500; official PKU journal connection reset; DOI resolution metadata alone is insufficient."
+        },
+        {
+          "doctorId": "puh3-blk-1591",
+          "name": "梅放",
+          "status": "no-new-candidate",
+          "note": "Eleven deferred papers plus one previous failed record attempted. Ten XML recovered; other contacts belong to Cui Ligang, Liu Zheng, Wang Shumin, etc. No target email. Spandidos full HTML recovered but no target mailto. PKU original remains inaccessible."
+        },
+        {
+          "doctorId": "puh3-zxwk-1981",
+          "name": "王关卉儿",
+          "status": "no-new-candidate",
+          "note": "Four deferred XML plus failed Springer article examined. Named addresses belong to Yang An, Xin Yang, Zhenmin Zhao, Dong Li or Hongbin Xie, not GuanhuiEr Wang."
+        },
+        {
+          "doctorId": "puh3-zxwk-1951",
+          "name": "布希",
+          "status": "no-new-candidate",
+          "note": "XML 500 and PKU journal connection reset. Remains unread."
+        },
+        {
+          "doctorId": "puh3-zxwk-1941",
+          "name": "刘晨阳",
+          "status": "no-new-candidate",
+          "note": "Publisher full text gives Chenyang Liu the Hong Kong Polytechnic University affiliation; PKU Third Hospital belongs to Ruijie Yang. Correspondence email belongs to Jing Cai. Reject automatic whole-paper AFF match."
+        },
+        {
+          "doctorId": "puh3-blk-1971",
+          "name": "叶菊香",
+          "status": "no-new-candidate",
+          "note": "XML 500 and PKU journal connection reset. Remains unread."
+        },
+        {
+          "doctorId": "puh3-blk-1961",
+          "name": "郑丹枫",
+          "status": "no-new-candidate",
+          "note": "XML 500; DOI publisher 403; PMC HTML only reCAPTCHA. Did not solve or bypass challenge."
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "stats": {
+        "selectedDoctors": 6,
+        "officialProfilesRead": 6,
+        "europePmcSearchRequestsIncludingExactMetadata": 18,
+        "returnedSearchRecordsIncludingDuplicates": 113,
+        "searchQueriesCapped": [
+          {
+            "label": "xu-alport",
+            "hitCount": 39,
+            "returned": 25
+          }
+        ],
+        "uniquePublicationPagesAttempted": 11,
+        "fullXmlRead": 4,
+        "publisherPublicAuthorPagesRead": 1,
+        "directPubmedAuthorRecordRead": 1,
+        "substantivePublicationDocumentsRead": 6,
+        "publicationEndpointHttpRequests": 14,
+        "isolatedBrowserAttempts": 1,
+        "institutionHomeAttempts": 1,
+        "totalRequestsIncludingSearchProfileBrowserHome": 40,
+        "newCandidateDoctors": 2,
+        "newCandidateEmails": 3,
+        "scopeCaveat": "Only six selected doctors; originals were not available/identified for Liu Chenyang and Li Zhihong. Search hits are not original papers read. No claim of comprehensive historical-publication coverage."
+      }
+    },
+    {
+      "round": 3,
+      "statistics": {
+        "selectedDoctors": 6,
+        "uniquePublicationRecordsRead": 20,
+        "pubmedMetadataSuccesses": 20,
+        "pubmedMetadataFailures": 0,
+        "publisherFollowupRequests": 5,
+        "publisherSubstantivePagesRecovered": 0,
+        "publisherRedirectPages": 2,
+        "publisherHttp403": 2,
+        "publisherAuthenticationLandingPages": 1,
+        "officialDoctorProfilesRead": 6,
+        "institutionEvidencePagesRecovered": 2,
+        "hospitalInstitutionHttpFailure": 503,
+        "hospitalInstitutionHttpsFailure": "connection-reset",
+        "scriptLoggedHttpRequests": 35,
+        "additionalWebSearchToolCalls": 2,
+        "additionalWebFetchToolCalls": 3,
+        "newCandidateDoctorsThisRound": 0,
+        "newCandidateEmailsThisRound": 0,
+        "priorCandidateInstitutionGapResolved": 1,
+        "integrationDoctors": 3,
+        "integrationEmails": 3
+      },
+      "selectedDoctors": [
+        {
+          "doctorId": "puh3-yk-1609",
+          "name": "李炳震",
+          "papers": 4
+        },
+        {
+          "doctorId": "puh3-ebhk-1262",
+          "name": "辛颖",
+          "papers": 7
+        },
+        {
+          "doctorId": "puh3-ebhk-5961",
+          "name": "胡伟倪",
+          "papers": 1
+        },
+        {
+          "doctorId": "puh3-csyxk-2291",
+          "name": "贾建文",
+          "papers": 2
+        },
+        {
+          "doctorId": "puh3-blk-1541",
+          "name": "钟延丰",
+          "papers": 3
+        },
+        {
+          "doctorId": "puh3-blk-2131",
+          "name": "刘海静",
+          "papers": 3
+        }
+      ],
+      "outcomes": [
+        {
+          "doctorId": "puh3-yk-1609",
+          "name": "李炳震",
+          "papers": 4,
+          "result": "本人作者节点没有邮箱；两篇旧记录也没有本人单位字段，不将其他作者信息代填。"
+        },
+        {
+          "doctorId": "puh3-ebhk-1262",
+          "name": "辛颖",
+          "papers": 7,
+          "result": "六篇无本人邮箱；PMID30276380将同一单位两邮箱复制进六位作者节点，不能逐人采用；RSC原刊落到login_required认证表单，未继续。"
+        },
+        {
+          "doctorId": "puh3-ebhk-5961",
+          "name": "胡伟倪",
+          "papers": 1,
+          "result": "Weini Hu作者节点无邮箱；唯一作者电子邮箱明确属于Junchen Wang，不转给胡伟倪。"
+        },
+        {
+          "doctorId": "puh3-csyxk-2291",
+          "name": "贾建文",
+          "papers": 2,
+          "result": "本人作者节点无邮箱；另一记录电子地址明确属于Xianshui Fu。"
+        },
+        {
+          "doctorId": "puh3-blk-1541",
+          "name": "钟延丰",
+          "papers": 3,
+          "result": "两篇原始PubMed记录均写zhongyf@bjmu.edc，继续标记疑似错误域名而不猜改；另一篇邮箱属于Qing Chang。两篇Elsevier实际原刊均403。"
+        },
+        {
+          "doctorId": "puh3-blk-2131",
+          "name": "刘海静",
+          "papers": 3,
+          "result": "两篇三院病理作者无邮箱；PMID36152740的Haijing Liu属于陕西省食品药品监督检验机构，不能用整篇三院单位证明其为目标。"
+        }
+      ]
+    }
+  ]
+}

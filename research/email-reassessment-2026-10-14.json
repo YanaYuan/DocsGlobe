@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-14",
+  "previousAudit": "email-audit-2026-10-14.json",
+  "baseline": {
+    "doctors": 971,
+    "emailDoctors": 589,
+    "uniqueEmails": 589,
+    "remainingMissing": 382,
+    "sources": 1510,
+    "directorySha256": "8899ab193196674368b59f2fd7e03b3d0785635a10b92c7d04c75873651a7846"
+  },
+  "scope": {
+    "retainedCandidateSummariesScreened": 46,
+    "followedUpDoctors": 11,
+    "additionalHistoryOnlyDoctors": 1,
+    "exhaustive": false,
+    "note": "筛读上一台账49位有候选者中尚缺邮箱的46人摘要；对下列11人进一步追查，另1人仅核对旧候选。未重新穷尽382人的全部文献，旧台账保留为当时快照。"
+  },
+  "entries": [
+    {
+      "doctorId": "puh3-sjnk-1481",
+      "name": "张英爽",
+      "state": "accepted",
+      "email": "zhangys0317@126.com",
+      "sourceId": "email-reassess-pmc7894467",
+      "previousReason": "登记库也将同址列在另一联系人名下。",
+      "decision": "原文通讯段逐人列出Yingshuang Zhang、神经内科与邮箱，不要求证明个人独占。保留登记复用事实并标明可能团队共享或代管，不宣称登记有误。",
+      "checks": [
+        {"kind": "original-xml", "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7894467/fullTextXML", "outcome": "named-correspondence-confirmed"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/sjnk/info/1461/1481.htm", "outcome": "name-department-and-research-match"},
+        {"kind": "trial-record", "url": "https://clinicaltrials.gov/api/v2/studies/NCT04956822", "outcome": "same-email-listed-for-Xiaoxuan-Liu"}
+      ]
+    },
+    {
+      "doctorId": "puh3-sjnk-16682",
+      "name": "李坚",
+      "state": "accepted",
+      "email": "LIJ698524@163.com",
+      "sourceId": "email-reassess-pdf35156691",
+      "previousReason": "作者元数据映射到临床流行病学中心。",
+      "decision": "原刊PDF第318页明确Jian Li为神经内科，只有Yi-Ming Zhao属于临床流行病学中心；具名通讯栏给出邮箱，保留原刊大写LIJ。院方列有多发性硬化和脱髓鞘脊髓病研究。",
+      "checks": [
+        {"kind": "article-metadata", "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=%28EXT_ID%3A35156691%29%20AND%20SRC%3AMED&format=json&resultType=core&pageSize=100", "outcome": "incorrect-affiliation-mapping-observed"},
+        {"kind": "original-pdf", "url": "https://journals.viamedica.pl/neurologia_neurochirurgia_polska/article/download/PJNNS.a2022.0016/65725", "page": 1, "outcome": "named-neurology-correspondence-confirmed"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/sjnk/info/1461/16682.htm", "outcome": "neurology-and-research-match"}
+      ]
+    },
+    {
+      "doctorId": "puh3-zyk-1461",
+      "name": "史成和",
+      "state": "accepted",
+      "email": "shichenghe@bjmu.edu.cn",
+      "sourceId": "email-reassess-pmid40355026",
+      "previousReason": "作者单位有医院但未写中医科。",
+      "decision": "完整姓名Chenghe Shi、本院及邮箱在个人作者字段中明确绑定；院方使用SHI Cheng-he署名，列蛋白标志物和数据挖掘研究及CHEN Jian-xin合作论文，不要求每条单位重复科室。",
+      "checks": [
+        {"kind": "article-metadata", "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A40355026%20AND%20SRC%3AMED&format=json&resultType=core&pageSize=100", "outcome": "named-author-email-distinct-from-other-correspondent"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/zyk/info/1004/1461.htm", "outcome": "full-name-research-and-collaborator-context-match"}
+      ]
+    },
+    {
+      "doctorId": "puh3-nnnk-1141",
+      "name": "宮萍",
+      "state": "accepted",
+      "email": "medical201611@gmail.com",
+      "sourceId": "email-reassess-pmid27106584",
+      "previousReason": "元数据Ping G姓名顺序异常，通用邮箱用户名，原刊入口406。",
+      "decision": "PubMed显示Gong Ping，唯一连接第3单位本院老年内科及邮箱。官网论文第4项是同一研究、同一署名并明确通讯作者，身份已解决；不必再证明用户名像姓名。",
+      "checks": [
+        {"kind": "pubmed-author-affiliation", "url": "https://pubmed.ncbi.nlm.nih.gov/27106584/", "outcome": "Gong-Ping-to-affiliation-3-with-email"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/nnnk/info/1004/1141.htm", "outcome": "publication-4-exact-title-and-corresponding-author"},
+        {"kind": "publisher-page", "url": "https://link.springer.com/article/10.1007/s10916-016-0497-2", "outcome": "access-failed-406"}
+      ]
+    },
+    {
+      "doctorId": "puh3-ek-1431",
+      "name": "王雪梅",
+      "state": "accepted",
+      "email": "xuemeiw7886@sohu.com",
+      "sourceId": "email-reassess-pmid21342626",
+      "supportingSourceId": "email-reassess-pdf21342626",
+      "previousReason": "邮箱还出现在其他作者元数据中，未证明独占。",
+      "decision": "PubMed第一作者Xue-Mei Wang具名单位字段列邮箱，原刊第141页确认同址及中文姓名，官网列科卡因综合征研究。按论文研究联系渠道采用；原刊多作者单位段未标明个人所有权，明确可能团队使用，不自动给其他合作者。",
+      "checks": [
+        {"kind": "pubmed-author-affiliation", "url": "https://pubmed.ncbi.nlm.nih.gov/21342626/", "outcome": "first-author-named-affiliation-with-email"},
+        {"kind": "original-pdf", "url": "https://www.zgddek.com/EN/PDF/12484", "page": 1, "outcome": "research-contact-confirmed-no-exclusive-owner-claim"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/ek/info/1004/1431.htm", "outcome": "Cockayne-syndrome-research-match"}
+      ]
+    },
+    {
+      "doctorId": "puh3-ek-1471",
+      "name": "崔蕴璞",
+      "state": "rejected-specific-candidate",
+      "candidateEmail": "obesity530@126.com",
+      "decision": "原刊PDF第977页中英文均明确该邮箱属于通讯作者王新利，不给第一作者崔蕴璞。由此前归属未决升级为具体候选属于他人的证据；王新利已有邮箱，本轮未添加第二地址。",
+      "confirmedContactName": "王新利",
+      "checks": [
+        {"kind": "pubmed-author-affiliation", "url": "https://pubmed.ncbi.nlm.nih.gov/31642430/", "outcome": "misleading-first-author-email-mapping"},
+        {"kind": "pubmed-author-affiliation", "url": "https://pubmed.ncbi.nlm.nih.gov/28606230/", "outcome": "same-email-on-another-first-author-record"},
+        {"kind": "original-pdf", "url": "https://www.zgddek.com/EN/PDF/10.7499/j.issn.1008-8830.2019.10.005", "page": 1, "outcome": "explicit-correspondent-Wang-Xin-Li"}
+      ]
+    },
+    {
+      "doctorId": "puh3-ptwk-1611",
+      "name": "白洋",
+      "state": "needs-identity-bridge",
+      "candidateEmail": "yangbxx2019@163.com",
+      "decision": "XML确实在Yang Bai作者节点列邮箱，但单位是肿瘤中心、基础研究中心及胃肠肿瘤实验室；官网为普通外科甲状腺临床工作，尚无本人参与该研究的明确连接。邮箱检索仅返回同一篇，不能单靠姓名和医院消歧。",
+      "checks": [
+        {"kind": "original-xml", "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12391508/fullTextXML", "outcome": "author-email-confirmed-identity-unresolved"},
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/ptwk/info/1461/1611.htm", "outcome": "no-specific-publication-bridge"}
+      ]
+    },
+    {
+      "doctorId": "puh3-szyxzx-2901",
+      "name": "宋颖",
+      "state": "needs-identity-bridge",
+      "candidateEmail": "yingsong@hsc.pku.edu.cn",
+      "decision": "XML确实在Ying Song作者节点列邮箱，但仅有癌症/基础研究中心单位，未补到与目录生殖医学科医生的具体连接。邮箱检索只返回同一篇；本轮未重新读取个人官网。",
+      "checks": [
+        {"kind": "original-xml", "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12391508/fullTextXML", "outcome": "author-email-confirmed-identity-unresolved"}
+      ]
+    },
+    {
+      "doctorId": "puh3-zlhlyfsbk-2361",
+      "name": "肖宇",
+      "state": "needs-identity-bridge",
+      "candidateEmail": "13001209322@163.com",
+      "decision": "新读官网证实放射科及肿瘤化疗经历，但尚不能将该药理研究中的Yu Xiao确定为此人；候选题录保留，邮箱反查仅回同篇，不把科室近似当作充分身份连接。",
+      "checks": [
+        {"kind": "official-profile", "url": "https://www.puh3.net.cn/zlhlyfsbk/info/1461/2361.htm", "outcome": "career-read-no-specific-paper-bridge"},
+        {"kind": "email-search", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=13001209322%40163.com", "outcome": "redirected-to-PMID-41082945"}
+      ]
+    },
+    {
+      "doctorId": "puh3-xxgnk-3051",
+      "name": "张福春",
+      "state": "needs-email-attribution",
+      "candidateEmail": "zhangfcdr@163.com",
+      "decision": "保留前轮共同通讯块未逐一标注的结论。此次PubMed不加引号检索返回3条，其中读取的一条不含目标邮箱；改为精确引号查询后无结果。不把宽松搜索命中当作证据或猜测邮箱归属。",
+      "checks": [
+        {"kind": "exact-email-search", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=%22zhangfcdr%40163.com%22", "outcome": "no-results-in-this-index"},
+        {"kind": "search-result-check", "url": "https://pubmed.ncbi.nlm.nih.gov/26739641/", "outcome": "unrelated-contact-not-used"}
+      ]
+    },
+    {
+      "doctorId": "puh3-pfk-3402",
+      "name": "路雪艳",
+      "state": "needs-email-attribution",
+      "candidateEmail": "luxysin_bj3@163.com",
+      "decision": "本轮PubMed邮箱检索无结果，未解除前轮两人两邮箱共同通讯块的歧义；不据此断言没有公开邮箱。",
+      "checks": [
+        {"kind": "email-search", "url": "https://pubmed.ncbi.nlm.nih.gov/?term=luxysin_bj3%40163.com", "outcome": "no-results-in-this-query"}
+      ]
+    },
+    {
+      "doctorId": "puh3-jzk-2491",
+      "name": "李辉",
+      "state": "history-only",
+      "candidateEmail": "huilee1990@163.com",
+      "decision": "只检查保留的NCT06359795候选摘要，研究为甲状腺眼病PET/CT；本轮未重新读登记原文或核实其与急诊科医生的关系，不算新来源复核。",
+      "checks": []
+    }
+  ],
+  "limitations": [
+    "若干Europe PMC多ID及邮箱查询返回503，不能据此判断无邮箱；单ID40355026及35156691查询、两篇XML成功。",
+    "普通浏览器可读PubMed和医院网页。最初猜测的部分医院URL返回404，后改用目录中精确的profileSourceId URL；404不作为医生资料缺失证据。",
+    "未探测投递、未发信，未保证本人独占或当前有效，未导入电话。",
+    "本轮不修改旧台账的历史结果；下一轮应同时读取本次结果，避免再次把已解除的暂缓当作禁入名单。",
+    "王新利新增可核实的替代邮箱仅记录为崔蕴璞候选的正确归属，不计入本轮新增覆盖或目录不同邮箱数。"
+  ],
+  "result": {
+    "addedEmailDoctors": 5,
+    "addedUniqueEmails": 5,
+    "addedSources": 6,
+    "emailDoctors": 594,
+    "uniqueEmails": 594,
+    "remainingMissing": 377,
+    "sources": 1516
+  }
+}
